@@ -28,4 +28,10 @@ public class ProductController {
         return productService.createProduct(productDetails);
     }
 
+    @GetMapping("/{productId}")
+    public Product getProductById(@PathVariable Long productId) {
+        log.info("Fetching product details for productId: " + productId);
+        return productService.getProductById(productId);
+
+    }
 }

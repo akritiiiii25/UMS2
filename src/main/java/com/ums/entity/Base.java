@@ -7,7 +7,6 @@ import java.util.Date;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-
 import java.util.Date;
 
 @MappedSuperclass

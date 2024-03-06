@@ -19,21 +19,22 @@ public class UserService {
     private IUser userRepo;
 
     /** User creation*/
-    public User createUser(User userDetails) {
+    public User createUser(User userDetails)
+    {
         return userRepo.save(userDetails);
     }
 
     /** Get user details*/
-    public UserDto getUserDetails(String userId) {
-        Map<String, String> errors = new HashMap<>();
-        User user = userRepo.findById(userId).orElseThrow(() -> new CustomException(HttpStatus.NOT_FOUND, "User Not Found"));
-        return new UserDto().builder()
-                .id(user.getId())
-                .isValid(Boolean.TRUE)
-                .name(user.getName())
-                .isDeleted(user.getIsDelete())
-                .role(String.valueOf(Role.User))
-                .build();
-
-    }
+public UserDto getUserDetails(String userId)
+{
+Map<String, String> errors = new HashMap<>();
+User user = userRepo.findById(userId).orElseThrow(() -> new CustomException(HttpStatus.NOT_FOUND, "User Not Found"));
+return new UserDto().builder()
+ .id(user.getId())
+ .isValid(Boolean.TRUE)
+.name(user.getName())
+.isDeleted(user.getIsDelete())
+ .role(String.valueOf(Role.User))
+ .build();
+}
 }

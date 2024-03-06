@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import java.util.Optional;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,5 +21,14 @@ public class ProductService {
 
     public Product createProduct(Product productDetails) {
         return productRepo.save(productDetails);
+    }
+
+    public Product getProductById(Long productId) {
+        Optional<Product> optionalProduct = productRepo.findById(String.valueOf(productId));
+        if (optionalProduct.isPresent()) {
+            return optionalProduct.get();
+        } else {
+            throw new CustomException("Product not found with ID: " + productId);
+        }
     }
 }
