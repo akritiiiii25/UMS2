@@ -1,17 +1,20 @@
 package com.ums.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class OfficeBranchDto {
+@Getter
+@Setter
+public class OfficeBranchDto
+{
+
     private String branchName;
     private String branchCode;
+    private String officeId;
+    private List<String> officeBranchIds;
 
 }
-

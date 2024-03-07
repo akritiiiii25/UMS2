@@ -1,32 +1,30 @@
 package com.ums.entity;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.*;
 import java.util.List;
 import java.util.ArrayList;
-import org.hibernate.annotations.GenericGenerator;
-
 @Entity
+@Table(name = "OfficeBranch")
 @Data
-@Table(name="OfficeBranch")
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class OfficeBranch extends Base {
-
-    @NotEmpty(message = "Branch name :")
+    @NotEmpty
     @Column(unique = true)
     private String branchName;
 
-    @NotEmpty(message = "Branch code :")
+    @NotEmpty
     @Column(unique = true)
     private String branchCode;
-
     @ManyToOne
     @JoinColumn(name = "office_id")
+    @JsonIgnore
     private Office office;
-
     @OneToMany(mappedBy = "officeBranch")
-    private List<Employee> employees = new ArrayList<>();
+    @JsonIgnore
+    private List<Employee> employees=new ArrayList<>();
 }
