@@ -16,7 +16,7 @@ public class OfficeBranchService {
         OfficeBranch officeBranch = new OfficeBranch();
         officeBranch.setBranchName(officeBranchDto.getBranchName());
         officeBranch.setBranchCode(officeBranchDto.getBranchCode());
-        // Set other properties if needed
+
         return officeBranchRepository.save(officeBranch);
     }
 

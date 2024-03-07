@@ -24,4 +24,5 @@ public class Employee extends Base {
     @ManyToOne
     @JoinColumn(name = "office_branch_id")
     private OfficeBranch officeBranch;
+    private Boolean isDelete = false;
 }

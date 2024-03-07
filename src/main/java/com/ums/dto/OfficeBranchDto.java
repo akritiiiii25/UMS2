@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class OfficeBranchDto {
     private String branchName;
     private String branchCode;
+    
 
 }
 
