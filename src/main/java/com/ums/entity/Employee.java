@@ -27,4 +27,17 @@ public class Employee extends Base{
   @ManyToOne
   @JoinColumn(name = "office_branch_id")
   private OfficeBranch officeBranch;
+public class Employee extends Base 
+{
+    @NotEmpty(message = "Employee name:")
+    @Column(unique = true)
+    private String employeeName;
+    @NotNull(message = "Employee Phone number:")
+    private String phoneNumber;
+    @NotNull(message = "Employee Salary:")
+    private Double salary;
+    @ManyToOne
+    @JoinColumn(name = "office_branch_id")
+    private OfficeBranch officeBranch;
+    private Boolean isDelete = false;
 }

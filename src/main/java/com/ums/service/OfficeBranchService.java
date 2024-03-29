@@ -19,6 +19,15 @@ public class OfficeBranchService
     public OfficeBranchService(IOfficeBranch officeBranchRepository, IOffice officeRepository) {
         this.officeBranchRepository = officeBranchRepository;
         this.officeRepository = officeRepository;
+
+    private IOfficeBranch officeBranchRepository;
+
+    public OfficeBranch createOfficeBranch(OfficeBranchDto officeBranchDto) {
+        OfficeBranch officeBranch = new OfficeBranch();
+        officeBranch.setBranchName(officeBranchDto.getBranchName());
+        officeBranch.setBranchCode(officeBranchDto.getBranchCode());
+
+        return officeBranchRepository.save(officeBranch);
     }
         public ResponseEntity<?> createOfficeBranch(OfficeBranchDto officeBranch)
         {
