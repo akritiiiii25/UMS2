@@ -1,16 +1,20 @@
+
 package com.ums.dto;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Getter
+@Setter
 public class EmployeeDto
 {
     private String employeeName;
     private String phoneNumber;
-    private Double salary;
+    private double salary;
+    private String officeBranchId;
+    private List<String> employeeIds;
 }
-

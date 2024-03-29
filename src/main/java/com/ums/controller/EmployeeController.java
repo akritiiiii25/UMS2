@@ -1,33 +1,66 @@
+//package com.ums.controller;
+//
+//import com.ums.dto.EmployeeDto;
+//import com.ums.entity.Employee;
+//import com.ums.service.EmployeeService;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.http.HttpStatus;
+//import org.springframework.web.bind.annotation.*;
+//import org.springframework.http.ResponseEntity;
+//@RestController
+//@RequestMapping("/employees")
+//public class EmployeeController
+//{
+//    private EmployeeService employeeService;
+//    @Autowired
+//    public EmployeeController(EmployeeService employeeService)
+//    {
+//        this.employeeService = employeeService;
+//    }
+//    @GetMapping("/count")
+//    public ResponseEntity<Long> getCountOfEmployeesBySalary(@RequestParam double salary)
+//    {
+//        long count = employeeService.getCountOfEmployeesBySalary(salary);
+//        return new ResponseEntity<>(count, HttpStatus.OK);
+//    }
+//    @PostMapping("/create")
+//    public ResponseEntity<Employee> createEmployee (@RequestBody EmployeeDto employee)
+//    {
+//        Employee createdEmployee = employeeService.createEmployee(employee);
+//        return new ResponseEntity<>(createdEmployee, HttpStatus.CREATED);
+//    }
+//
+//
+//}
 package com.ums.controller;
-import com.ums.entity.Employee;
 
 import com.ums.dto.EmployeeDto;
+import com.ums.entity.Employee;
 import com.ums.service.EmployeeService;
-import jakarta.validation.Valid;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/employee")
 @RestController
-@Validated
+@RequestMapping("/employees")
 public class EmployeeController {
-    private static final Logger log = LogManager.getLogger(EmployeeController.class);
-    @Autowired
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
 
-    @PostMapping("/create")
-    public Employee createEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
-        log.info("Employee creation API is called!");
-        return employeeService.createEmployee(employeeDto);
+    @Autowired
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
     @GetMapping("/count")
-    public int getCountOfEmployeesWithSalary(@RequestParam Double salary) {
-        log.info("Fetching count of employees with salary: " + salary);
-        return employeeService.getCountBySalary(salary);
+    public ResponseEntity<Long> getCountOfEmployeesBySalary(@RequestParam double salary) {
+        long count = employeeService.getCountOfEmployeesBySalary(salary);
+        return ResponseEntity.ok(count);
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<?> createEmployee(@RequestBody EmployeeDto employeeDto) {
+        ResponseEntity<?> response = employeeService.createEmployee(employeeDto);
+        return response;
     }
 }

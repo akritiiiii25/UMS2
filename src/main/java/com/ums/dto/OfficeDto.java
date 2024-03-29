@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class OfficeDto {
+public class OfficeDto
+{
     private String officeName;
     private String region;
-    // Add more fields if needed
+
 }

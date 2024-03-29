@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IOfficeBranch extends JpaRepository<OfficeBranch, String> {
-
+    boolean existsByBranchNameAndOffice_Id(String branchName, String officeId);
 }

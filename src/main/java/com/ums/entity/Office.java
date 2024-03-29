@@ -1,28 +1,24 @@
 package com.ums.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotEmpty;
+import lombok.*;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name="Office")
 @Data
-@Table(name = "Office")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Office extends Base {
-
-
-    @NotEmpty(message = "Office name is required")
+@Getter
+@Setter
+public class Office extends Base{
+    @NotEmpty
     @Column(unique = true)
     private String officeName;
-
-    @NotEmpty(message = "Region is required")
+    @NotEmpty
     private String region;
-
     @OneToMany(mappedBy = "office", cascade = CascadeType.ALL)
-    private List<OfficeBranch> branches = new ArrayList<>();
+    @JsonIgnore
+    private List<OfficeBranch> officeBranches;
 }
